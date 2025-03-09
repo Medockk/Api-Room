@@ -24,6 +24,7 @@ class UserRepositoryImpl(
         }
 
         val userID = getUserID()
+        upsertUserData(userDataImpl)
         client.postgrest["Users"].insert(mapOf(
             "userID" to userID,
             "fio" to userDataImpl.fio,
@@ -43,16 +44,20 @@ class UserRepositoryImpl(
         }
     }
 
-    override fun getUserById(userId: String): Flow<UserDataImpl> = flow {
-        userDao.getUserById(userId)
+    override suspend fun getUserById(): Flow<UserDataImpl>{
+        val userID = getUserID()
+        return flow {
+            userDao.getUserById(userID)
+        }
     }
 
-    override fun upsertUserData(userDataImpl: UserDataImpl) {
+    override suspend fun upsertUserData(userDataImpl: UserDataImpl) {
         userDao.upsertUserData(userDataImpl)
     }
 
-    override fun deleteUser(userDataImpl: UserDataImpl) {
-        userDao.deleteUser(userDataImpl)
+    override suspend fun deleteUser() {
+        val userID = getUserID()
+        userDao.deleteUser(userID)
     }
 
     private suspend fun getUserID() : String{

@@ -8,7 +8,7 @@ interface UserRepository {
     suspend fun signUp(mail: String, pass: String, userDataImpl: UserDataImpl)
     suspend fun signIn(mail: String, pass: String)
 
-    fun getUserById(userId: String) : Flow<UserDataImpl>
-    fun upsertUserData(userDataImpl: UserDataImpl)
-    fun deleteUser(userDataImpl: UserDataImpl)
+    suspend fun getUserById() : Flow<UserDataImpl>
+    suspend fun upsertUserData(userDataImpl: UserDataImpl)
+    suspend fun deleteUser()
 }

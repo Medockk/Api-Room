@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class GetUserByIdUseCase(
     private val userRepository: UserRepository
 ) {
-    operator fun invoke(userId: String) : Flow<UserDataImpl>{
-        return userRepository.getUserById(userId)
+    suspend operator fun invoke() : Flow<UserDataImpl>{
+        return userRepository.getUserById()
     }
 }

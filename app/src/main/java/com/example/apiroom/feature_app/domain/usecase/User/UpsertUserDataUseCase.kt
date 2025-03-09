@@ -7,7 +7,7 @@ class UpsertUserDataUseCase(
     private val userRepository: UserRepository
 ) {
 
-    operator fun invoke(userDataImpl: UserDataImpl){
+    suspend operator fun invoke(userDataImpl: UserDataImpl){
         userRepository.upsertUserData(userDataImpl)
     }
 }
