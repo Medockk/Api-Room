@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -60,6 +62,7 @@ fun SignUpScreen(
         {it: String -> viewModel.onEvent(SignUpEvent.EmailEnter(it))},
         {it: String -> viewModel.onEvent(SignUpEvent.PasswordEnter(it))},
         {it: String -> viewModel.onEvent(SignUpEvent.FioEnter(it))},
+        {it: String -> viewModel.onEvent(SignUpEvent.PhoneEnter(it))},
         {it: String -> viewModel.onEvent(SignUpEvent.GenderEnter(it))},
         {it: String -> viewModel.onEvent(SignUpEvent.BirthdayDataEnter(it))},
         {it: String -> viewModel.onEvent(SignUpEvent.WeightEnter(it))},
@@ -91,6 +94,20 @@ fun SignUpScreen(
                 label = { Text(labelList[it]) }
             )
             Spacer(Modifier.height(30.dp))
+        }
+        Spacer(Modifier.height(10.dp))
+        Button(
+            onClick = {
+                viewModel.onEvent(SignUpEvent.SignUp)
+            },
+            modifier = Modifier
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            colors = ButtonDefaults.buttonColors(Color.Blue)
+        ) {
+            Text(
+                text = "sign up"
+            )
         }
         Spacer(Modifier.height(10.dp))
         TextButton(

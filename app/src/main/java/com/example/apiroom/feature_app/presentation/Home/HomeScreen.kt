@@ -1,5 +1,6 @@
 package com.example.apiroom.feature_app.presentation.Home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
@@ -27,6 +29,7 @@ fun HomeScreen(
 ) {
 
     val state = viewModel.state.value
+
     if (state.exception.isNotEmpty()){
         val context = LocalContext.current
         Toast.makeText(context, state.exception, Toast.LENGTH_SHORT).show()
@@ -35,6 +38,8 @@ fun HomeScreen(
     AnimatedVisibility(
         visible = state.userDataImpl != null
     ) {
+        Log.e("dao", "homeScreenSet")
+
         val labelList = remember { listOf("fio","phone","gender","birthdayData","weight","height") }
         val valueList = remember { listOf(
             state.userDataImpl!!.fio,
@@ -62,6 +67,7 @@ fun HomeScreen(
                         text = valueList[it]
                     )
                 }
+                Spacer(Modifier.height(8.dp))
             }
         }
     }

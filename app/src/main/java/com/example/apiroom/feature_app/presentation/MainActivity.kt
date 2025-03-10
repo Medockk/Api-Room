@@ -1,16 +1,10 @@
 package com.example.apiroom.feature_app.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -25,8 +19,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            window.decorView.apply {
+                this.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            }
             val navController = rememberNavController()
-            ApiRoomTheme {
+            ApiRoomTheme(
+                false,
+                false
+            ) {
                 NavHost(navController, startDestination =  Route.SplashScreen.route){
                     composable(Route.SplashScreen.route){
                         SplashScreen(navController)

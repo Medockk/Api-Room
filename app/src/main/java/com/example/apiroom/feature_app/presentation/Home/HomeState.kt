@@ -6,5 +6,5 @@ data class HomeState(
     val exception: String = "",
     val showIndicator: Boolean = false,
 
-    val userDataImpl: UserData? = null
+    val userDataImpl: UserData? = null,
 )
