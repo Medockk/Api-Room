@@ -17,6 +17,6 @@ interface UserDao {
     @Query("SELECT * FROM UserDataImpl WHERE userID=:userId")
     fun getUserById(userId: String) : Flow<UserDataImpl>
 
-    @Delete
-    fun deleteUser(userDataImpl: UserDataImpl)
+    @Query("DELETE FROM UserDataImpl WHERE userID=:userId")
+    fun deleteUser(userId: String)
 }

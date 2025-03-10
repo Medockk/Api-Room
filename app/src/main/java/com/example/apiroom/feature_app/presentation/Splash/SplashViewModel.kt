@@ -25,5 +25,6 @@ class SplashViewModel : ViewModel() {
             }
 
         }
+        timer.start()
     }
 }
